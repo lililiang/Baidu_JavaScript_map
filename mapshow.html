@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+<link rel="stylesheet" type="text/css" href="map.css">
+<!--<link rel="stylesheet" type="text/javascript" href="../showmap.js">-->
+<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=<!-- your baidu key-->"></script>
+<title>地图</title>
+</head>
+<body>
+<div id="header">
+	<div class="center"></div>
+</div>
+<!-- head ends -->
+<div id="container">
+    <div class="map">
+        	<div id="allmap"></div>
+    </div>
+    <div id="side">
+    	<div class="side_title">
+        	<div class="info_title">
+            	<span>相关信息</span>
+            </div>
+        </div>
+        <div class="info_wnd">
+        	<div class="txtbox">
+            	<div class="txt_title">总里程：</div>
+				<input id="input1" value=""></input>
+            </div>
+            <div class="txtbox">
+            	<div class="txt_title">总费用：</div>
+				<input id="input2" value=""></input>
+            </div>
+        </div>
+        <div class="btn">
+        	<button type="button" onClick="runPlay()">开始演示</button>
+        </div>
+    </div>
+</div>
+<!-- container ends -->
+<div id="footer"></div>
+<!-- footer ends -->
+</body>
+</html>
+<script type="text/javascript">
+
+// 百度地图API功能
+var map = new BMap.Map("allmap");            // 创建Map实例
+map.centerAndZoom(new BMap.Point(114.3162, 30.581084),12);  // 初始化地图,设置中心点坐标和地图级别。
+map.addControl(new BMap.NavigationControl());               // 添加平移缩放控件
+map.addControl(new BMap.ScaleControl());                    // 添加比例尺控件
+map.addControl(new BMap.OverviewMapControl());              //添加缩略地图控件
+//添加标注点
+var spoi1 = new BMap.Point(114.316841, 30.563368);    //1 积玉桥街配送站
+var spoi2 = new BMap.Point(114.349903, 30.60772);     //2 杨园街配送站
+var spoi3 = new BMap.Point(114.350367, 30.5869);	  //3 徐家棚街配送站
+var spoi4 = new BMap.Point(114.305954, 30.544661);	  //4 黄鹤楼街配送站
+var spoi5 = new BMap.Point(114.328086, 30.544294);	  //5 中南路街配送站
+var spoi6 = new BMap.Point(114.341048, 30.555277);	  //6 水果湖街配送站
+var spoi7 = new BMap.Point(114.372368, 30.536501);	  //7 珞珈山街配送站
+var spoi8 = new BMap.Point(114.323988, 30.518465);	  //8 南湖街配送站
+
+var epoi  = new BMap.Point(114.293222, 30.518551);    //0 仓库
+//积玉桥街配送站
+var marker1 = new BMap.Marker(spoi1);  // 创建标注
+map.addOverlay(marker1);              // 将标注添加到地图中
+
+//创建信息窗口
+var opt1 = '<div>'+'站点名称：积玉桥配送站<br/>地理位置：(114.316841, 30.563368)<br/>订单量：4.02t'+'</div>';
+var infoWindow1 = new BMap.InfoWindow(opt1);
+marker1.addEventListener("click", function(){this.openInfoWindow(infoWindow1);});
+
+//杨园街配送站
+var marker2 = new BMap.Marker(spoi2);  // 创建标注
+map.addOverlay(marker2);              // 将标注添加到地图中
+
+//创建信息窗口
+var opt2 = '<div>'+'站点名称：杨园街配送站<br/>地理位置：(114.349903, 30.60772)<br/>订单量：0.64t'+'</div>';
+var infoWindow2 = new BMap.InfoWindow(opt2);
+marker2.addEventListener("click", function(){this.openInfoWindow(infoWindow2);});
+
+//徐家棚街配送站
+var marker3 = new BMap.Marker(spoi3);  // 创建标注
+map.addOverlay(marker3);              // 将标注添加到地图中
+
+//创建信息窗口
+var opt3 = '<div>'+'站点名称：徐家棚配送站<br/>地理位置：(114.350367, 30.5869)<br/>订单量：2.55t'+'</div>';
+var infoWindow3 = new BMap.InfoWindow(opt3);
+marker3.addEventListener("click", function(){this.openInfoWindow(infoWindow3);});
+
+//黄鹤楼街配送站
+var marker4 = new BMap.Marker(spoi4);  // 创建标注
+map.addOverlay(marker4);              // 将标注添加到地图中
+
+//创建信息窗口
+var opt4 = '<div>'+'站点名称：黄鹤楼街配送站<br/>地理位置：(114.305954, 30.544661)<br/>订单量：1.23t'+'</div>';
+var infoWindow4 = new BMap.InfoWindow(opt4);
+marker4.addEventListener("click", function(){this.openInfoWindow(infoWindow4);});
+
+//中南路街配送站
+var marker5 = new BMap.Marker(spoi5);  // 创建标注
+map.addOverlay(marker5);              // 将标注添加到地图中
+
+//创建信息窗口
+var opt5 = '<div>'+'站点名称：中南路街配送站<br/>地理位置：(114.328086, 30.544294)<br/>订单量：3.82t'+'</div>';
+var infoWindow5 = new BMap.InfoWindow(opt5);
+marker5.addEventListener("click", function(){this.openInfoWindow(infoWindow5);});
+
+//水果湖街配送站
+var marker6 = new BMap.Marker(spoi6);  // 创建标注
+map.addOverlay(marker6);              // 将标注添加到地图中
+
+//创建信息窗口
+var opt6 = '<div>'+'站点名称：水果湖街配送站<br/>地理位置：(114.341048, 30.555277)<br/>订单量：4.18t'+'</div>';
+var infoWindow6 = new BMap.InfoWindow(opt6);
+marker6.addEventListener("click", function(){this.openInfoWindow(infoWindow6);});
+
+//珞珈山街配送站
+var marker7 = new BMap.Marker(spoi7);  // 创建标注
+map.addOverlay(marker7);              // 将标注添加到地图中
+
+//创建信息窗口
+var opt7 = '<div>'+'站点名称：珞珈山街配送站<br/>地理位置：(114.372368, 30.536501)<br/>订单量：0.70t'+'</div>';
+var infoWindow7 = new BMap.InfoWindow(opt7);
+marker7.addEventListener("click", function(){this.openInfoWindow(infoWindow7);});
+
+//南湖街配送站
+var marker8 = new BMap.Marker(spoi8);  // 创建标注
+map.addOverlay(marker8);              // 将标注添加到地图中
+
+//创建信息窗口
+var opt8 = '<div>'+'站点名称：南湖街配送站<br/>地理位置：(114.323988, 30.518465)<br/>订单量：0.65t'+'</div>';
+var infoWindow8 = new BMap.InfoWindow(opt8);
+marker8.addEventListener("click", function(){this.openInfoWindow(infoWindow8);});
+
+//仓库
+var marker0 = new BMap.Marker(epoi);  // 创建标注
+map.addOverlay(marker0);              // 将标注添加到地图中
+marker0.setAnimation(BMAP_ANIMATION_BOUNCE);
+//创建信息窗口
+var opt0 = '<div>'+'站点名称：仓库<br/>地理位置：(114.293222, 30.518551)<br/>订单量：----'+'</div>';
+var infoWindow0 = new BMap.InfoWindow(opt0);
+marker0.addEventListener("click", function(){this.openInfoWindow(infoWindow0);});
+
+//////////////////////////////////////////////////////////////////////////////////
+//1	积玉桥街配送站	（30.563368,114.316841）		4.02
+//2	杨园街配送站		（30.60772, 114.349903）		0.64
+//3	徐家棚街配送站	（30.5869, 114.350367）		2.55
+//4	黄鹤楼街配送站	（30.544661, 114.305954）	1.23
+//5	中南路街配送站	（30.544294, 114.328086）	3.82
+//6	水果湖街配送站	（30.555277, 114.341048）	4.18
+//7	珞珈山街配送站	（30.536501, 114.372368）	0.70
+//8	南湖街配送站		（30.518465, 114.323988）	0.65
+//0	仓库				（30.518551, 114.293222）	----
+
+var lab1 = new BMap.Label("积玉桥街",{position:spoi1});        //创建9个label
+var lab2 = new BMap.Label("杨园街",{position:spoi2});
+var lab3 = new BMap.Label("徐家棚",{position:spoi3});   
+var lab4 = new BMap.Label("黄鹤楼街",{position:spoi4});       
+var lab5 = new BMap.Label("中南路街",{position:spoi5});
+var lab6 = new BMap.Label("水果湖街",{position:spoi6}); 
+var lab7 = new BMap.Label("珞珈山街",{position:spoi7});       
+var lab8 = new BMap.Label("南湖街",{position:spoi8});
+var elab = new BMap.Label("仓库",{position:epoi});  
+ 
+map.addOverlay(lab1);
+map.addOverlay(lab2);
+map.addOverlay(lab3);
+map.addOverlay(lab4);
+map.addOverlay(lab5);
+map.addOverlay(lab6);
+map.addOverlay(lab7);
+map.addOverlay(lab8);
+map.addOverlay(elab);
+
+var bounds = null;
+var linesPoints = null;
+var myIcon = new BMap.Icon("image/car.png", new BMap.Size(40, 23), {imageOffset: new BMap.Size(0, 0)});
+function Line1() {
+var b1 = new Array();
+var b2 = new Array();
+var b3 = new Array();
+var b4 = new Array();
+var b = new Array();
+function initLine(){
+	//阶段1   
+	var driving0 = new BMap.DrivingRoute(map,{onSearchComplete:drawLine});  // 驾车实例,并设置回调
+        driving0.search(epoi, spoi2);                                      // 搜索一条线路
+
+	//阶段2
+	var driving1 = new BMap.DrivingRoute(map,{onSearchComplete:drawLine});	// 驾车实例,并设置回调
+		driving1.search(spoi2, spoi3);                                      // 搜索一条线路
+	
+	//阶段3
+	var driving2 = new BMap.DrivingRoute(map,{onSearchComplete:drawLine});	// 驾车实例,并设置回调
+		driving2.search(spoi3, spoi5);                             			// 搜索一条线路
+	                                      // 搜索一条线路
+	//阶段4
+	var driving3 = new BMap.DrivingRoute(map,{onSearchComplete:drawLine});	// 驾车实例,并设置回调
+		driving3.search(spoi5, epoi);                                       // 搜索一条线路
+}
+
+	function getPoint(pointsArray, epoi, spoi) {
+	var driving0 = new BMap.DrivingRoute(map); 
+        driving0.search(epoi, spoi);
+		driving0.setSearchCompleteCallback(function(){
+			var pts = driving0.getResults().getPlan(0).getRoute(0).getPath();
+			var paths = pts.length;
+			var addPoint = function (points){
+			for(var i = 0; i < points.length; i ++){
+				pointsArray.push(points[i]);
+				}
+			}
+			addPoint(pts);
+			//alert(paths);
+			});
+	}
+function run(ba){
+	var carMk = new BMap.Marker(ba[0],{icon:myIcon});
+	map.addOverlay(carMk);
+    resetMkPoint(1,ba.length,ba,carMk);
+    
+	function resetMkPoint(i,len,pts,carMk){
+        carMk.setPosition(pts[i]);
+        if(i < len){
+            setTimeout(function(){
+                i++;
+                resetMkPoint(i,len,pts,carMk);
+            },100);
+        }
+    }
+    
+}
+
+function drawLine(results){
+    var opacity = 0.45;
+	var route = results.getPlan(0).getRoute(0);
+    // 驾车线路
+    if(route.getRouteType() == BMAP_ROUTE_TYPE_DRIVING){
+    	map.addOverlay(new BMap.Polyline(route.getPath(), {strokeColor: "#0030ff",strokeOpacity:opacity,strokeWeight:6,enableMassClear:true}));
+    }else{
+    // 步行线路有可能为0
+        map.addOverlay  (new BMap.Polyline(route.getPath(), {strokeColor: "#30a208",strokeOpacity:0.75,strokeWeight:4,enableMassClear:true}));
+    }
+}
+
+
+function addArray(pts, a1, a2, a3, a4) {
+	var path1 = a1.length;
+	var path2 = a1.length + a2.length;
+	var path3 = a1.length + a2.length + a3.length;
+	var paths = a1.length + a2.length + a3.length + a4.length;
+	var addPoints = function (){
+		for(var i = 0; i < paths; i ++){
+			if(i < path1){
+				pts.push(a1[i]);
+			}
+			if(i < path2 && i >= path1){
+				pts.push(a2[i - path1]);
+			}
+			if(i < path3 && i >= path2){
+				pts.push(a3[i - path2]);
+			}
+			if(i < paths && i >= path3){
+				pts.push(a4[i - path3]);
+			}
+		}
+	}
+	addPoints();
+}
+
+initLine();
+setTimeout(function() {getPoint(b1,epoi, spoi2);},1000);
+setTimeout(function() {getPoint(b2,spoi2, spoi3);},1500);
+setTimeout(function() {getPoint(b3,spoi3, spoi5);},2000);
+setTimeout(function() {getPoint(b4,spoi5, epoi);},2500);
+
+setTimeout(function() {addArray(b,b1,b2,b3,b4);},30000);
+
+setTimeout(function(){
+		run(b);
+},50000);
+}
+
+function Line2() {
+var b1 = new Array();
+var b2 = new Array();
+var b3 = new Array();
+var b4 = new Array();
+var b5 = new Array();
+var b = new Array();
+function initLine(){
+	//阶段1   
+	var driving0 = new BMap.DrivingRoute(map,{onSearchComplete:drawLine});  // 驾车实例,并设置回调
+        driving0.search(epoi, spoi8);                                      // 搜索一条线路
+
+	//阶段2
+	var driving1 = new BMap.DrivingRoute(map,{onSearchComplete:drawLine});	// 驾车实例,并设置回调
+		driving1.search(spoi8, spoi7);                                      // 搜索一条线路
+	
+	//阶段3
+	var driving2 = new BMap.DrivingRoute(map,{onSearchComplete:drawLine});	// 驾车实例,并设置回调
+		driving2.search(spoi7, spoi4);                             			// 搜索一条线路
+	                                      // 搜索一条线路
+	//阶段4
+	var driving3 = new BMap.DrivingRoute(map,{onSearchComplete:drawLine});	// 驾车实例,并设置回调
+		driving3.search(spoi4, spoi6);                                       // 搜索一条线路
+	
+	var driving4 = new BMap.DrivingRoute(map,{onSearchComplete:drawLine});	// 驾车实例,并设置回调
+		driving4.search(spoi6, epoi);                                       // 搜索一条线路	
+}
+
+	function getPoint(pointsArray, epoi, spoi) {
+	var driving0 = new BMap.DrivingRoute(map); 
+        driving0.search(epoi, spoi);
+		driving0.setSearchCompleteCallback(function(){
+			var pts = driving0.getResults().getPlan(0).getRoute(0).getPath();
+			var paths = pts.length;
+			var addPoint = function (points){
+			for(var i = 0; i < points.length; i ++){
+				pointsArray.push(points[i]);
+				}
+			}
+			addPoint(pts);
+			//alert(paths);
+			});
+	}
+function run(ba){
+	var carMk = new BMap.Marker(ba[0],{icon:myIcon});
+	map.addOverlay(carMk);
+    resetMkPoint(1,ba.length,ba,carMk);
+    
+	function resetMkPoint(i,len,pts,carMk){
+        carMk.setPosition(pts[i]);
+        if(i < len){
+            setTimeout(function(){
+                i++;
+                resetMkPoint(i,len,pts,carMk);
+            },100);
+        }
+    }
+    
+}
+
+function drawLine(results){
+    var opacity = 0.45;
+	var route = results.getPlan(0).getRoute(0);
+    // 驾车线路
+    if(route.getRouteType() == BMAP_ROUTE_TYPE_DRIVING){
+    	map.addOverlay(new BMap.Polyline(route.getPath(), {strokeColor: "#30a208",strokeOpacity:opacity,strokeWeight:6,enableMassClear:true}));
+    }else{
+    // 步行线路有可能为0
+        map.addOverlay  (new BMap.Polyline(route.getPath(), {strokeColor: "#30a208",strokeOpacity:0.75,strokeWeight:4,enableMassClear:true}));
+    }
+}
+
+
+function addArray(pts, a1, a2, a3, a4, a5) {
+	var path1 = a1.length;
+	var path2 = a1.length + a2.length;
+	var path3 = a1.length + a2.length + a3.length;
+	var path4 = a1.length + a2.length + a3.length + a4.length;
+	var paths = a1.length + a2.length + a3.length + a4.length + a5.length;
+	var addPoints = function (){
+		for(var i = 0; i < paths; i ++){
+			if(i < path1){
+				pts.push(a1[i]);
+			}
+			if(i < path2 && i >= path1){
+				pts.push(a2[i - path1]);
+			}
+			if(i < path3 && i >= path2){
+				pts.push(a3[i - path2]);
+			}
+			if(i < path4 && i >= path3){
+				pts.push(a4[i - path3]);
+			}
+			if(i < paths && i >= path4){
+				pts.push(a5[i - path4]);
+			}
+		}
+	}
+	addPoints();
+}
+
+initLine();
+//getPoint(b1,epoi, spoi8);
+//getPoint(b2,spoi8, spoi7);
+//getPoint(b3,spoi7, spoi4);
+//getPoint(b4,spoi4, spoi6);
+//getPoint(b5,spoi6, epoi);
+setTimeout(function() {getPoint(b1,epoi, spoi8);},1000);
+setTimeout(function() {getPoint(b2,spoi8, spoi7);},1500);
+setTimeout(function() {getPoint(b3,spoi7, spoi4);},2000);
+setTimeout(function() {getPoint(b4,spoi4, spoi6);},2500);
+setTimeout(function() {getPoint(b5,spoi6, epoi);},3000);
+
+setTimeout(function() {addArray(b,b1,b2,b3,b4,b5);},30000);
+setTimeout(function(){
+		run(b);
+},50000);
+}
+
+function Line3() {
+var b1 = new Array();
+var b2 = new Array();
+var b = new Array();
+function initLine(){ 
+	var driving0 = new BMap.DrivingRoute(map,{onSearchComplete:drawLine});  // 驾车实例,并设置回调
+        driving0.search(epoi, spoi1);                                      // 搜索一条线路
+
+	//阶段2
+	var driving1 = new BMap.DrivingRoute(map,{onSearchComplete:drawLine});	// 驾车实例,并设置回调
+		driving1.search(spoi1, epoi);                                      // 搜索一条线路
+}
+
+	function getPoint(pointsArray, epoi, spoi) {
+	var driving0 = new BMap.DrivingRoute(map); 
+        driving0.search(epoi, spoi);
+		driving0.setSearchCompleteCallback(function(){
+			var pts = driving0.getResults().getPlan(0).getRoute(0).getPath();
+			var paths = pts.length;
+			var addPoint = function (points){
+			for(var i = 0; i < points.length; i ++){
+				pointsArray.push(points[i]);
+				}
+			}
+			addPoint(pts);
+			//alert(paths);
+			});
+	}
+function run(ba){
+	var carMk = new BMap.Marker(ba[0],{icon:myIcon});
+	map.addOverlay(carMk);
+    resetMkPoint(1,ba.length,ba,carMk);
+    
+	function resetMkPoint(i,len,pts,carMk){
+        carMk.setPosition(pts[i]);
+        if(i < len){
+            setTimeout(function(){
+                i++;
+                resetMkPoint(i,len,pts,carMk);
+            },100);
+        }
+    }
+    
+}
+
+function drawLine(results){
+    var opacity = 0.45;
+	var route = results.getPlan(0).getRoute(0);
+    // 驾车线路
+    if(route.getRouteType() == BMAP_ROUTE_TYPE_DRIVING){
+    	map.addOverlay(new BMap.Polyline(route.getPath(), {strokeColor: "#000f00",strokeOpacity:opacity,strokeWeight:6,enableMassClear:true}));
+    }else{
+    // 步行线路有可能为0
+        map.addOverlay  (new BMap.Polyline(route.getPath(), {strokeColor: "#30a208",strokeOpacity:0.75,strokeWeight:4,enableMassClear:true}));
+    }
+}
+
+function addArray(pts, a1, a2) {
+	var path1 = a1.length;
+	var paths = a1.length + a2.length;
+	
+	var addPoints = function (){
+		for(var i = 0; i < paths; i ++){
+			if(i < path1){
+				pts.push(a1[i]);
+			}
+			if(i < paths && i >= path1){
+				pts.push(a2[i - path1]);
+			}
+		}
+	}
+	addPoints();
+}
+
+initLine();
+//getPoint(b1,epoi, spoi1);
+//getPoint(b2,spoi1, epoi);
+setTimeout(function() {getPoint(b1,epoi, spoi1);},1000);
+setTimeout(function() {getPoint(b2,spoi1, epoi);},1500);
+setTimeout(function() {addArray(b,b1,b2);},30000);
+
+setTimeout(function(){
+		run(b);
+},50000);
+}
+
+function runPlay(){
+document.getElementById("input1").value = " ";
+document.getElementById("input2").value = " ";
+
+map.setViewport([spoi1,spoi2,spoi3,spoi4,spoi5,spoi6,spoi7,spoi8,epoi]);
+
+Line1();
+Line2();
+Line3();
+
+setTimeout(function(){document.getElementById("input1").value = "87.4公里";},160000);
+setTimeout(function(){document.getElementById("input2").value = "584.88元";},160000);
+}
+</script>
