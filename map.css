@@ -1,0 +1,148 @@
+@charset "utf-8";
+/* CSS Document */
+
+html, body, div, span, h1, h2, h3, h4, h5, h6, p, em, img, dl, dt, dd, ol, ul, li, form, table, caption, tr, th, td 
+	{ 
+	margin:0; 
+	padding:0; 
+	border:0; 
+	outline:0; 
+	font-size:100%; 
+	vertical-align:baseline; 
+	}
+	
+body {
+    font-size: 16px;
+    background: url(images/grain.png) repeat scroll 0% 0% rgb(244, 244, 244);
+    max-width: 1800px;
+    margin: 0px auto;
+}
+
+#header {
+	height:79px;
+	padding:15px 0px;
+	background:url(image/header_bg.png) repeat-x scroll 0% 0% transparent;
+	}
+	
+#container {
+	margin:10px auto;
+	display:block;	
+	}
+
+#container, .center {
+	width:990px;
+	height:auto;
+	margin:0px auto;
+	}
+
+#allmap {
+	width: 780px;
+	height: 500px;
+	overflow: hidden;
+	margin:0px auto;
+	}
+	
+#side {
+	width:170px;
+	height:510px;
+	display:block;
+	float:right;
+	padding:10px 0 0 0;
+	}
+	
+#footer { 
+	margin-top:30px; 
+	position: relative; 
+	z-index: 999; 
+	height: 39px; 
+	left: 0; 
+	width: 100%; 
+	clear:both; 
+	border-top: 1px solid #fff; 
+	background: #181818 url(../images/grain.png) repeat center top; 
+	text-shadow: 1px 1px 0px #000; 
+	color: #bbb; 
+	}
+	
+#footer .footerbar { 
+	float: left; 
+	width: 100%; 
+	height: 39px; 
+	line-height:39px; 
+	background: #000; 
+	text-shadow: 1px 1px 0px #000; 
+	border-top: 1px solid #1c1c1c; 
+	font-size:14px; 
+	}
+
+.map_panel {
+	//background-color:#CECECE;
+	}
+
+.map {
+	width:800px;
+	padding:10px 0 10px 0;
+	background:#FFF;
+	float:left;
+	}
+
+.side_title {
+	width:88px;
+	height:30px;
+	margin:0;
+	box-shadow: 1px 1px 2px rgb(204, 204, 204);
+	background-color:#FFF;
+	}
+.info_title {
+	width:68px;
+	height:20px;
+	display:inline-block;
+	margin:10px 0 0 10px;
+	}
+	
+.info_title span {
+	margin-left:2px;
+	font-family:"微软雅黑";
+	font-size:16px;
+	color:;
+	text-align:center;
+	}
+	
+.info_wnd {
+	width:170px;
+	height:76px;
+	margin:0px 0 0 0;
+	display:inline-block;
+	background-color:#FFF;
+	box-shadow: 1px 1px 2px rgb(204, 204, 204);
+	}
+
+.txtbox {
+	width:150px;
+	height:20px;
+	margin:10px 0 0 10px;
+	}
+
+.txt_title {
+	font:12px/20px Arial;
+	float:left;
+	display:inline-block;
+	}
+.txtbox input {
+	width:78px;
+	height:18px;
+	display:inline-block;
+	float:left;
+	}
+	
+.btn {
+	margin:20px;
+	}
+	
+.btn button {
+	width:120px;
+	height:36px;
+	margin:auto;
+	box-shadow: 1px 1px 5px rgb(204, 204, 204);
+	background: none repeat scroll 0% 0% rgb(255, 255, 255);
+	}
